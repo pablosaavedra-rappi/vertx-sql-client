@@ -6,6 +6,8 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
 import java.lang.reflect.Array;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -39,6 +41,8 @@ public final class Utils {
         array.add(component);
       }
       return array;
+    } else if (value instanceof Temporal) {
+      return DateTimeFormatter.ISO_DATE_TIME.format((Temporal) value);
     } else {
       return value.toString();
     }
